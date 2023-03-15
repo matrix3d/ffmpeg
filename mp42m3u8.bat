@@ -1,0 +1,1 @@
+ffmpeg -i 1.mp4 -c:a copy -c:v copy -hls_time 10 -hls_list_size 0 index.m3u8
