@@ -1,1 +1,2 @@
-ffmpeg -i 1.mp4 -c:a copy -c:v copy -hls_time 10 -hls_list_size 0 index.m3u8
+ffmpeg -i 1.mp4 -c:a copy -c:v copy -hls_time 10 -hls_list_size 0 a/index.m3u8
+ffmpeg -i 1.mp4 -map 0:v -map 0:a -c:a copy -c:v copy -hls_time 10 -hls_list_size 0 -hls_flags append_list -f hls a/index.m3u8

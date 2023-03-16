@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>播放M3U8视频</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+    <video id="video" controls></video>
+    <script>
+		var v=getParameter("v");
+        var video = document.getElementById('video');
+		if(video.canPlayType('application/vnd.apple.mpegurl'))
+		{
+			video.src =v+'/index.m3u8';
+            video.addEventListener('loadedmetadata',function() {
+                video.play();
+            });
+		}else if(Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(v+'/index.m3u8');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                video.play();
+            });
+        } else if(video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src =v+'/index.m3u8';
+            video.addEventListener('loadedmetadata',function() {
+                video.play();
+            });
+        }
+		
+	function getParameter(param) {
+		var reg = new RegExp(".*[?,&]"+param+"=(.*?)((&.*)|$)");
+		var obj = reg.exec(window.location.search);
+		if(obj)return obj[1];
+		else return "";
+	}
+    </script>
+</body>
+</html>
