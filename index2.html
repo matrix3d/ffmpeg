@@ -148,6 +148,9 @@
 	if(pageStr==null){
 		pageStr="0";
 	}
+	
+	document.title=v1;
+	
 	var pagenum=parseInt(pageStr);
 	var numPrePage=16;
 	var numpage=Math.ceil(fileNames/numPrePage);
@@ -156,6 +159,7 @@
 		return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'
 	}
 	//http://10.0.0.20/v/v.html?v=jr/jr1
+	//https://cdn.jsdelivr.net/npm/hls.js@latest
 	 var tmpl = heredoc(function(){/*
 		<div class="col-md-3">
           <div class="card mb-3 shadow-sm">
@@ -170,10 +174,11 @@
 				</div>
 			</a>
             <div class="card-body">
-              <p class="card-text">第<%=i%>集</p>
+              <p class="card-text">第<%=i%>集 <%=str0%></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="v.html?v=<%=v0%>/<%=i%>" class="btn btn-sm btn-outline-secondary">View</a>
+                  <a href="v.html?v=<%=v0%>/<%=i%>&s=jsdelivr" class="btn btn-sm btn-outline-secondary">jsdelivr</a>
                 </div>
               </div>
             </div>
